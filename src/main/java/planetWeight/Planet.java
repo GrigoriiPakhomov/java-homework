@@ -4,8 +4,8 @@ class Planet {
     String name;
     double factor;
 
-    Planet(String name, double Factor) {
+    Planet(String name, double factor) {
         this.name = name;
-        this.factor = Factor;
+        this.factor = factor;
     }
 }
