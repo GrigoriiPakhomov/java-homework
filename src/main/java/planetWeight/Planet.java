@@ -2,10 +2,10 @@ package main.java.planetWeight;
 
 class Planet {
     String name;
-    double Factor;
+    double factor;
 
     Planet(String name, double Factor) {
         this.name = name;
-        this.Factor = Factor;
+        this.factor = Factor;
     }
 }

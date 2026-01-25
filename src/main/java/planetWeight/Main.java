@@ -1,7 +1,6 @@
 package main.java.planetWeight;
 
 
-//import java.io.Console;
 import java.util.Scanner;
 
 public class Main {
@@ -23,7 +22,7 @@ public class Main {
         System.out.println("\nСпасибо! Вот как бы вы весили на других планетах:");
 
         for (Planet planet : planets) {
-            double result = weight * planet.Factor;
+            double result = weight * planet.factor;
             System.out.printf("- %s: %.2f кг%n", planet.name, result);
         }
 
