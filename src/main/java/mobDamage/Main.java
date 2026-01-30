@@ -1,34 +1,33 @@
 package main.java.mobDamage;
 
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 public class Main {
 
-    private static final Logger LOG = Logger.getLogger(Main.class.getName());
     public static void main(String[] args) {
-        System.setProperty("java.util.logging.SimpleFormatter.format", "%5$s%n");
+        Scanner scanner = new Scanner(System.in);
 
-        LOG.info("Введите базовый урон вашей атаки: ");
-
-        Scanner scaner = new Scanner(System.in);
-        double baseDamage = scaner.nextDouble();
+        System.out.print("Введите базовый урон вашей атаки: ");
+        double baseDamage = scanner.nextDouble();
 
         Mob goblin = new Mob("Гоблин", 100.0, 0.2);
-        double damage = goblin.takeDamage(baseDamage);
 
-        String attack = String.format("Атака наносит %.1f базового урона...%n", baseDamage);
-        LOG.info(attack);
+        double blockedDamage = goblin.getBlockedDamage(baseDamage);
+        double finalDamage = goblin.takeDamage(baseDamage);
 
-        String armor = String.format("Броня гоблина (%.0f%%) заблокировала %.1f урона.%n",
-                goblin.armorPercent * 100, baseDamage * goblin.armorPercent);
-        LOG.info(armor);
-
-        String finalDamage = String.format("Итоговый урон по цели: %.1f.%n", damage);
-        LOG.info(finalDamage);
-
-        String goblinHealth = String.format("Здоровье гоблина: %.1f / %.1f.%n", goblin.health, goblin.maxHealth);
-        LOG.info(goblinHealth);
-
+        System.out.printf("Атака наносит %.1f базового урона...%n", baseDamage);
+        System.out.printf(
+                "Броня %s (%.0f%%) заблокировала %.1f урона.%n",
+                goblin.getName(),
+                goblin.getArmorPercent(),
+                blockedDamage
+        );
+        System.out.printf("Итоговый урон по цели: %.1f.%n", finalDamage);
+        System.out.printf(
+                "Здоровье %s: %.1f / %.1f.%n",
+                goblin.getName(),
+                goblin.getHealth(),
+                goblin.getMaxHealth()
+        );
     }
 }
