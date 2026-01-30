@@ -2,9 +2,10 @@ package main.java.mobDamage;
 
 public class Mob {
     private final String name;
-    private double health;
     private final double maxHealth;
     private final double armorPercent;
+
+    private double health;
 
     public Mob(String name, double maxHealth, double armorPercent) {
         this.name = name;
@@ -17,10 +18,7 @@ public class Mob {
         double blockedDamage = baseDamage * armorPercent;
         double finalDamage = baseDamage - blockedDamage;
 
-        health -= finalDamage;
-        if (health < 0) {
-            health = 0;
-        }
+        health = Math.max(0, health-finalDamage);
 
         return finalDamage;
     }
