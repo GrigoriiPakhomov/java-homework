@@ -15,7 +15,7 @@ public class Main {
 
         System.out.println("Введите координату Y:");
         if (!scanner.hasNextInt()) {
-            System.out.println("Ошибка: координата X должна быть целым числом.");
+            System.out.println("Ошибка: координата Y должна быть целым числом.");
             return;
         }
         int y = scanner.nextInt();
