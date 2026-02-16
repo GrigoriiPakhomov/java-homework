@@ -29,13 +29,4 @@ public class Converter {
                case KELVIN -> outKelvin;
           };
      }
-
-     public static String getUnitName(TempUnit unit) {
-          return switch (unit) {
-               case CELSIUS -> "Цельсия";
-               case FAHRENHEIT -> "Фаренгейта";
-               case KELVIN -> "Кельвина";
-          };
-     }
-
 }
