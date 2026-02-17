@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите первое число:");
@@ -14,19 +15,16 @@ public class Main {
         double firstNumber = scanner.nextDouble();
 
         scanner.nextLine();
-        System.out.println("Введите операцию (+, -, \\*, /):");
+
+        System.out.println("Введите операцию (+, -, *, /):");
         String inputOperation = scanner.nextLine();
 
         Operation operation;
-        switch (inputOperation){
-            case "+" -> operation = Operation.ADD;
-            case "-" -> operation = Operation.SUBTRACT;
-            case "*" -> operation = Operation.MULTIPLY;
-            case "/" -> operation = Operation.DIVIDE;
-            default -> {
-                System.out.println("Ошибка: выберите операцию из списка (+, -, \\*, /)");
-                return;
-            }
+        try {
+            operation = Operation.fromString(inputOperation);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return; 
         }
 
         System.out.println("Введите второе число:");
@@ -36,13 +34,11 @@ public class Main {
         }
         double secondNumber = scanner.nextDouble();
 
-        if (operation == Operation.DIVIDE && secondNumber == 0) {
-            System.out.println("Ошибка: Деление на ноль невозможно.");
-            return;
+        try {
+            double result = operation.apply(firstNumber, secondNumber);
+            System.out.printf("Результат: %.2f%n", result);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ошибка: " + e.getMessage());
         }
-
-        double result = Calculator.calculate(firstNumber, secondNumber, operation);
-
-        System.out.printf("Результат: %.2f%n", result);
     }
 }
