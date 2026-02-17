@@ -24,13 +24,13 @@ public class Main {
             System.out.printf("Точка (%d, %d) находится в I четверти.%n", x, y);
         } else if (x > 0 && y < 0) {
             System.out.printf("Точка (%d, %d) находится в IV четверти.%n", x, y);
-        } else if
-        (x < 0 && y > 0) {
+        } else if (x < 0 && y > 0) {
             System.out.printf("Точка (%d, %d) находится в II четверти.%n", x, y);
-        } else {
+        } else if(x < 0 && y < 0) {
             System.out.printf("Точка (%d, %d) находится в III четверти.%n", x, y);
+        } else {
+            System.out.println("Точка лежит на оси координат и не принадлежит ни одной четверти.");
         }
-
     }
 }
 
