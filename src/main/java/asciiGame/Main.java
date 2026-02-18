@@ -9,23 +9,37 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         RandomChoice randomChoice = new RandomChoice();
 
-        char letter = randomChoice.randomChar();
+        while (true) {
 
-        System.out.printf("Угадайте ASCII-код для буквы %c:", letter);
+            char letter = randomChoice.randomChar();
 
-        try {
-            int input = scanner.nextInt();
+            System.out.printf("Угадайте ASCII-код для буквы %c: ", letter);
 
-            int correctCode = letter;
+            try {
+                int input = scanner.nextInt();
 
-            if(input == correctCode){
-                System.out.println("Поздравляем! Вы угадали!");
-            } else {
-                System.out.println("Неправильно. Правильный ответ: " + correctCode);
+                int correctCode = letter;
+
+                if (input == correctCode) {
+                    System.out.println("Поздравляем! Вы угадали!");
+                } else {
+                    System.out.println("Неправильно. Правильный ответ: " + correctCode);
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("Ошибка: Введите число.");
+                scanner.next();
             }
-        }catch (InputMismatchException e) {
-            System.out.println("Ошибка: Введите число.");
-        }
 
+            scanner.nextLine();
+
+            System.out.println("Играть еще? (да/нет)");
+            String answer = scanner.nextLine();
+
+            if (answer.equalsIgnoreCase("нет")) {
+                System.out.println("Спасибо за игру!");
+                break;
+            }
+        }
     }
 }
