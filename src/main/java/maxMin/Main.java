@@ -7,25 +7,13 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите первое целое число:");
-        if (!scanner.hasNextInt()) {
-            System.out.println("Ошибка: введено не целое число");
-            return;
-        }
-        int firstNumber = scanner.nextInt();
+        int firstNumber = InputHelper.readNumber(scanner);
 
         System.out.println("Введите второе целое число:");
-        if (!scanner.hasNextInt()) {
-            System.out.println("Ошибка: введено не целое число");
-            return;
-        }
-        int secondNumber = scanner.nextInt();
+        int secondNumber = InputHelper.readNumber(scanner);
 
         System.out.println("Введите третье целое число:");
-        if (!scanner.hasNextInt()) {
-            System.out.println("Ошибка: введено не целое число");
-            return;
-        }
-        int thirdNumber = scanner.nextInt();
+        int thirdNumber = InputHelper.readNumber(scanner);
 
         int maxNumber = firstNumber;
         int minNumber = firstNumber;
