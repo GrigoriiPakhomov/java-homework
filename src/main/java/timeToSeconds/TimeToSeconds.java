@@ -2,23 +2,20 @@ package main.java.timeToSeconds;
 
 public class TimeToSeconds {
 
-    public int toSeconds(String inputTime) {
+    public static int toSeconds(String inputTime) {
 
         if (inputTime == null || inputTime.isBlank()) {
             throw new IllegalArgumentException("Строка не должна быть пустой.");
         }
 
-        int colonIndex = inputTime.indexOf(":");
+        String [] parts = inputTime.split(":", 2);
 
-        if (colonIndex == -1) {
+        if (parts.length != 2) {
             throw new ArrayIndexOutOfBoundsException("Неверный формат. Используйте mm:ss.");
         }
 
-        String minutesPart = inputTime.substring(0, colonIndex);
-        String secondsPart = inputTime.substring(colonIndex + 1);
-
-        int minutes = Integer.parseInt(minutesPart.trim());
-        int seconds = Integer.parseInt(secondsPart.trim());
+        int minutes = Integer.parseInt(parts[0].trim());
+        int seconds = Integer.parseInt(parts[1].trim());
 
         if (minutes < 0 || seconds < 0) {
             throw new IllegalArgumentException("Минуты и секунды не могут быть отрицательными.");
