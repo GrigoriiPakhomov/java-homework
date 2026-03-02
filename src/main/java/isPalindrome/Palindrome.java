@@ -2,6 +2,9 @@ package main.java.isPalindrome;
 
 public class Palindrome {
     public static boolean isPalindrome(String input){
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException("Строка не может быть пустой или содержать только пробелы.");
+        }
         input = input.toLowerCase();
 
         StringBuilder cleaned = new StringBuilder();

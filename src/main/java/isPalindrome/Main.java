@@ -12,9 +12,8 @@ public class Main {
             System.out.println("Введите строку для проверки на палиндром:");
             String input = scanner.nextLine();
 
-            if(input.isBlank()){
-                System.out.println("Стрка не может быть пустой. Попробуйте снова.");
-                continue;
+            if (input.isBlank()) {
+                throw new IllegalArgumentException("Строка не может быть пустой или содержать только пробелы.");
             }
 
             boolean result = isPalindrome(input);
