@@ -5,30 +5,33 @@ public class Palindrome {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException("Строка не может быть пустой или содержать только пробелы.");
         }
+
         input = input.toLowerCase();
+        int left = 0;
+        int right = input.length() - 1;
 
-        StringBuilder cleaned = new StringBuilder();
+        while (left < right) {
+            char leftChar = input.charAt(left);
+            char rightChar = input.charAt(right);
 
-        for (int i = 0; i < input.length(); i++) {
-            char c = input.charAt(i);
-            if (Character.isLetter(c)) {
-                cleaned.append(c);
+            if (!Character.isLetter(leftChar)) {
+                left++;
+                continue;
             }
+
+            if (!Character.isLetter(rightChar)) {
+                right--;
+                continue;
+            }
+
+            if (leftChar != rightChar) {
+                return false;
+            }
+
+            left++;
+            right--;
         }
 
-        String cleanedString = cleaned.toString();
-
-
-        char[] text = cleanedString.toCharArray();
-
-        StringBuilder reversed = new StringBuilder();
-
-        for (int i = text.length - 1; i >= 0; i--){
-            reversed.append(text[i]);
-        }
-
-        String reversedString = reversed.toString();
-
-        return input.equals(reversedString);
+        return true;
     }
 }
