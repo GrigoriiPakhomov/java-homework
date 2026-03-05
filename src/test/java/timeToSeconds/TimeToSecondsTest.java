@@ -1,4 +1,4 @@
-package test.java;
+package test.java.timeToSeconds;
 
 import main.java.timeToSeconds.TimeToSeconds;
 import org.junit.jupiter.api.Test;
