@@ -4,9 +4,9 @@ public class CheckNumber {
 
     public static boolean checkPower(int input) {
 
-        for (int i = 2; i < input; i++) {
+        for (int i = 2; i * i <= input; i++) {
 
-            int result = i;
+            long result = i;
 
             while (result < input) {
                 result *= i;
