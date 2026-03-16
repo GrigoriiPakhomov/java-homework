@@ -3,6 +3,9 @@ package main.java.multiplicationTableTrainer;
 import java.util.Random;
 import java.util.Scanner;
 
+import static main.java.multiplicationTableTrainer.Statistic.printStatistic;
+
+
 public class Trainer {
 
     public static void startTrainer() {
@@ -52,13 +55,6 @@ public class Trainer {
 
         }
 
-        System.out.println("""
-                --- Статистика за сессию ---
-                """);
-
-        System.out.println("Всего примеров: " + total);
-        System.out.println("Правильных ответов: " + correct);
-        System.out.println("Неправильных ответов: " + wrong);
-        System.out.println();
+        printStatistic(total, correct, wrong);
     }
 }

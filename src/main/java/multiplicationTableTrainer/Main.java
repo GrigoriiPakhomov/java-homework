@@ -17,13 +17,13 @@ public class Main {
                     3. Выход             
                     """);
 
-            if (!scanner.hasNextInt() ){
+            if (!scanner.hasNextInt()) {
                 System.out.println("Ошибка: Некорректный ввод. Пожалуйста, введите число (1-3).");
             }
 
             int choise = scanner.nextInt();
 
-            switch (choise){
+            switch (choise) {
                 case 1 -> showTable();
                 case 2 -> startTrainer();
                 case 3 -> {
