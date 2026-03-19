@@ -18,25 +18,34 @@ public class Main {
         while (true){
 
             System.out.println("Слово: " + progress.getProgressString() );
-            System.out.println("Использованные буквы: ");
+            System.out.println("Использованные буквы: " + progress.getUsedLettersString());
             System.out.println("Введите букву: ");
 
             String input = scanner.nextLine();
 
+            if (input.length() != 1) {
+                System.out.println("Введите одну букву!");
+                continue;
+            }
+
             char letter = input.toLowerCase().charAt(0);
 
-            boolean before = progress.getProgressString().contains(String.valueOf(letter));
-
-            progress.openLetter(word,letter);
-
-            boolean after = progress.getProgressString().contains(String.valueOf(letter));
-
-            if(before == after){
-                game.reduceLives();
-                System.out.printf("Такой буквы нет.Осталось попыток %d", game.getLives());
-            }else {
-                System.out.println("Вы угадали!");
+            if (progress.isLetterUsed(letter)) {
+                System.out.println("Вы уже вводили эту букву!");
+                continue;
             }
+
+            progress.addUsedLetter(letter);
+
+            boolean found = progress.openLetter(word, letter);
+
+            if (found) {
+                System.out.println("Вы угадали!");
+            } else {
+                game.reduceLives();
+                System.out.println("Такой буквы нет. Осталось попыток: " + game.getLives());
+            }
+
 
             if (progress.isComplete()) {
                 System.out.println("Вы победили! Слово: " + word);
