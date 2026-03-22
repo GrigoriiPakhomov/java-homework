@@ -21,14 +21,14 @@ public class Main {
             System.out.println("Использованные буквы: " + progress.getUsedLettersString());
             System.out.println("Введите букву: ");
 
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().toLowerCase();
 
-            if (input.length() != 1) {
-                System.out.println("Введите одну букву!");
+            if (!InputValidator.isValidLetter(input)) {
+                System.out.println("Введите одну латинскую букву!");
                 continue;
             }
 
-            char letter = input.toLowerCase().charAt(0);
+            char letter = input.charAt(0);
 
             if (progress.isLetterUsed(letter)) {
                 System.out.println("Вы уже вводили эту букву!");
