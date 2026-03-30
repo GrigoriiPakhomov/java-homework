@@ -1,6 +1,5 @@
 package test.java.hangman;
 
-
 import main.java.hangman.Progress;
 import org.junit.jupiter.api.Test;
 
@@ -13,10 +12,9 @@ class ProgressTest {
 
         Progress progress = new Progress("apple");
 
-        boolean result = progress.openLetter("apple", 'a');
+        boolean result = progress.openLetter('a');
 
         assertTrue(result);
-
     }
 
     @Test
@@ -24,10 +22,9 @@ class ProgressTest {
 
         Progress progress = new Progress("apple");
 
-        boolean result = progress.openLetter("apple", 'z');
+        boolean result = progress.openLetter('z');
 
         assertFalse(result);
-
     }
 
     @Test
@@ -35,12 +32,11 @@ class ProgressTest {
 
         Progress progress = new Progress("apple");
 
-        progress.openLetter("apple", 'a');
-        progress.openLetter("apple", 'p');
-        progress.openLetter("apple", 'l');
-        progress.openLetter("apple", 'e');
+        progress.openLetter('a');
+        progress.openLetter('p');
+        progress.openLetter('l');
+        progress.openLetter('e');
 
         assertTrue(progress.isComplete());
-
     }
 }

@@ -3,58 +3,65 @@ package main.java.hangman;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
         Words words = new Words();
         Game game = new Game();
 
         String word = words.getWord();
+
         Progress progress = new Progress(word);
 
-        System.out.println("Добро пожаловать в игру \"Виселица\"!");
-        System.out.printf("Загадано слово из %d букв. У вас 7 попыток.\n", word.length());
+        try (Scanner scanner = new Scanner(System.in)) {
 
-        while (true){
+            System.out.printf("""
+            Добро пожаловать в игру "Виселица"!
+            Загадано слово из %d букв. У вас %d попыток.
+            """, word.length(), game.getLives());
 
-            System.out.println("Слово: " + progress.getProgressString() );
-            System.out.println("Использованные буквы: " + progress.getUsedLettersString());
-            System.out.println("Введите букву: ");
+            while (true) {
 
-            String input = scanner.nextLine().toLowerCase();
+                System.out.println("Слово: " + progress.getProgressString());
 
-            if (!InputValidator.isValidLetter(input)) {
-                System.out.println("Введите одну латинскую букву!");
-                continue;
-            }
+                System.out.println("Использованные буквы: "
+                        + progress.getUsedLettersString());
 
-            char letter = input.charAt(0);
+                System.out.println("Введите букву:");
 
-            if (progress.isLetterUsed(letter)) {
-                System.out.println("Вы уже вводили эту букву!");
-                continue;
-            }
+                String input = scanner.nextLine().toLowerCase();
 
-            progress.addUsedLetter(letter);
+                if (!InputValidator.isValidLetter(input)) {
+                    System.out.println("Введите одну латинскую букву!");
+                    continue;
+                }
 
-            boolean found = progress.openLetter(word, letter);
+                char letter = input.charAt(0);
 
-            if (found) {
-                System.out.println("Вы угадали!");
-            } else {
-                game.reduceLives();
-                System.out.println("Такой буквы нет. Осталось попыток: " + game.getLives());
-            }
+                if (progress.isLetterUsed(letter)) {
+                    System.out.println("Вы уже вводили эту букву!");
+                    continue;
+                }
 
+                boolean found = progress.openLetter(letter);
 
-            if (progress.isComplete()) {
-                System.out.println("Вы победили! Слово: " + word);
-                break;
-            }
+                if (found) {
+                    System.out.println("Вы угадали!");
+                } else {
+                    game.reduceLives();
+                    System.out.println("Такой буквы нет. Осталось попыток: "
+                            + game.getLives());
+                }
 
-            if (game.getLives() == 0) {
-                System.out.println("Вы проиграли! Слово было: " + word);
-                break;
+                if (progress.isComplete()) {
+                    System.out.println("Вы победили! Слово: " + word);
+                    break;
+                }
+
+                if (game.getLives() == 0) {
+                    System.out.println("Вы проиграли! Слово было: " + word);
+                    break;
+                }
             }
         }
     }
