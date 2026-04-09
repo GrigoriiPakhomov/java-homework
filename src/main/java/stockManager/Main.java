@@ -23,7 +23,7 @@ public class Main {
 
             String input = scanner.nextLine();
 
-            switch (input.toLowerCase()){
+            switch (input.trim().toLowerCase()){
                 case "add" -> {
                     System.out.print("Введите название товара: ");
                     String name = scanner.nextLine();
