@@ -19,8 +19,8 @@ public class SearchCommand implements Command {
     @Override
     public void execute() {
 
-        System.out.print("Введите название товара: ");
-        String name = scanner.nextLine();
+        String name = InputUtils.readString(scanner,
+                "Введите название товара: ");
 
         Product product = inventory.searchProduct(name);
 

@@ -18,14 +18,14 @@ public class UpdateCommand implements Command {
     @Override
     public void execute() {
 
-        System.out.print("Введите название товара: ");
-        String name = scanner.nextLine();
+        String name = InputUtils.readString(scanner,
+                "Введите название товара: ");
 
-        System.out.print("Введите новое количество: ");
-        int quantity = Integer.parseInt(scanner.nextLine());
+        int quantity = InputUtils.readInt(scanner,
+                "Введите новое количество: ");
 
-        System.out.print("Введите новую цену: ");
-        double price = Double.parseDouble(scanner.nextLine());
+        double price = InputUtils.readDouble(scanner,
+                "Введите новую цену: ");
 
         inventory.updateProduct(name, quantity, price);
     }

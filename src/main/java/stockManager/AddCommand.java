@@ -18,14 +18,14 @@ public class AddCommand implements Command {
     @Override
     public void execute() {
 
-        System.out.print("Введите название товара: ");
-        String name = scanner.nextLine();
+        String name = InputUtils.readString(scanner,
+                "Введите название товара: ");
 
-        System.out.print("Введите количество: ");
-        int quantity = Integer.parseInt(scanner.nextLine());
+        int quantity = InputUtils.readInt(scanner,
+                "Введите количество: ");
 
-        System.out.print("Введите цену: ");
-        double price = Double.parseDouble(scanner.nextLine());
+        double price = InputUtils.readDouble(scanner,
+                "Введите цену: ");
 
         inventory.addProduct(name, quantity, price);
     }
