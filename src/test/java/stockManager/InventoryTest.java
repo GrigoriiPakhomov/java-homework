@@ -21,8 +21,8 @@ class InventoryTest {
         inventory.addProduct("Milk", 10, 2.5);
         Product p = inventory.searchProduct("Milk");
         assertNotNull(p, "Продукт должен быть найден после добавления");
-        assertEquals(10, p.quantity, "Количество должно совпадать");
-        assertEquals(2.5, p.price, "Цена должна совпадать");
+        assertEquals(10, p.quantity(), "Количество должно совпадать");
+        assertEquals(2.5, p.price(), "Цена должна совпадать");
     }
 
     @Test
@@ -30,7 +30,7 @@ class InventoryTest {
         inventory.addProduct("Bread", 5, 1.5);
         Product p = inventory.searchProduct("Bread");
         assertNotNull(p);
-        assertEquals("Bread", p.name);
+        assertEquals("Bread", p.name());
     }
 
     @Test
@@ -60,8 +60,8 @@ class InventoryTest {
         inventory.updateProduct("Juice", 25, 3.5);
         Product p = inventory.searchProduct("Juice");
         assertNotNull(p);
-        assertEquals(25, p.quantity);
-        assertEquals(3.5, p.price);
+        assertEquals(25, p.quantity());
+        assertEquals(3.5, p.price());
     }
 
     @Test

@@ -24,7 +24,7 @@ public class Inventory {
 
     public Product searchProduct(String name) {
         for (Product p : products) {
-            if (p.name.equalsIgnoreCase(name)) {
+            if (p.name().equalsIgnoreCase(name)) {
                 return p;
             }
         }
@@ -42,12 +42,19 @@ public class Inventory {
     }
 
     public void updateProduct(String name, int quantity, double price) {
+
         Product p = searchProduct(name);
+
         if (p != null) {
-            p.quantity = quantity;
-            p.price = price;
-            System.out.printf("Товар %s обновлён.", name);
+
+            products.remove(p);
+
+            products.add(new Product(name, quantity, price));
+
+            System.out.printf("Товар %s обновлён.%n", name);
+
         } else {
+
             System.out.println("Товар не найден.");
         }
     }
