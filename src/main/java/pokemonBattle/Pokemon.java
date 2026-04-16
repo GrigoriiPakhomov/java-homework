@@ -53,7 +53,7 @@ public class Pokemon {
 
         attack += 2;
 
-        System.out.println(name + " leveled up!");
+        System.out.println(name + " получил новый уровень!");
     }
 
     public boolean isAlive() {

@@ -11,11 +11,11 @@ public class Attack extends Skill {
 
         System.out.println(
                 user.getName()
-                        + " attacks "
+                        + " атакует "
                         + target.getName()
-                        + " for "
+                        + " и наносит "
                         + damage
-                        + " damage!"
+                        + " урона!"
         );
     }
 }

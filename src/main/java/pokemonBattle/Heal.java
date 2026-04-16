@@ -15,11 +15,9 @@ public class Heal extends Skill {
 
         System.out.println(
                 user.getName()
-                        + " heals "
-                        + target.getName()
-                        + " for "
+                        + " восстанавливает "
                         + healAmount
-                        + " hp!"
+                        + " здоровье!"
         );
     }
 }
