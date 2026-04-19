@@ -33,11 +33,7 @@ public class Pokemon {
 
     public void takeDamage(int damage) {
 
-        hp -= damage;
-
-        if (hp < 0) {
-            hp = 0;
-        }
+        hp = Math.max(0, hp - damage);
     }
 
     public void heal(int amount) {
