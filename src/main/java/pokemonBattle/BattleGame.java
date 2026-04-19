@@ -3,17 +3,11 @@ package main.java.pokemonBattle;
 import java.util.Scanner;
 
 public class BattleGame {
-
     private Scanner scanner = new Scanner(System.in);
-
     private Pokemon player = new Pokemon("Пикачу", 100, 15, 1);
-
     private Pokemon enemy = new Pokemon("Чармандер", 100, 12, 1);
-
     private Skill attack = new Attack();
-
     private Skill heal = new Heal(10);
-
 
     public void startGame() {
 
@@ -33,19 +27,23 @@ public class BattleGame {
         scanner.close();
     }
 
-
     private void playerTurn() {
 
-        System.out.println("\nВаше здоровье: " + player.getHp());
-        System.out.println("Здоровье противника: " + enemy.getHp());
+        System.out.printf("""
+                        Ваше здоровье: %d
+                        Здоровье противника: %d
 
-        System.out.println("\nВыберите действие:");
-        System.out.println("1 — Атака");
-        System.out.println("2 — Лечение");
+                        Выберите действие:
+                        1 — Атака
+                        2 — Лечение
+                        """,
+                player.getHp(),
+                enemy.getHp()
+        );
 
         int choice = scanner.nextInt();
 
-        if (choice == 1) {
+        if (choice==1) {
 
             attack.use(player, enemy);
 
@@ -55,14 +53,12 @@ public class BattleGame {
         }
     }
 
-
     private void enemyTurn() {
 
         System.out.println("\nПротивник атакует!");
 
         attack.use(enemy, player);
     }
-
 
     private void finishGame() {
 
