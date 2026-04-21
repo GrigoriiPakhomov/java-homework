@@ -5,15 +5,18 @@ public class Pokemon {
     private static final int HP_INCREASE_PER_LEVEL = 10;
     private static final int ATTACK_INCREASE_PER_LEVEL = 2;
 
-    private String name;
+    private final String name;
+    private final PokemonType type;
+
     private int hp;
     private int attack;
     private int level;
     private int maxHp;
 
-    public Pokemon(String name, int hp, int attack, int level) {
+    public Pokemon(String name, PokemonType type, int hp, int attack, int level) {
 
         this.name = name;
+        this.type = type;
         this.hp = hp;
         this.attack = attack;
         this.level = level;
@@ -24,6 +27,10 @@ public class Pokemon {
         return name;
     }
 
+    public PokemonType getType() {
+        return type;
+    }
+
     public int getHp() {
         return hp;
     }
@@ -32,8 +39,9 @@ public class Pokemon {
         return attack;
     }
 
-    public int getLevel() {
-        return level;
+    public boolean isAlive() {
+
+        return hp > 0;
     }
 
     public void takeDamage(int damage) {
@@ -43,20 +51,19 @@ public class Pokemon {
 
     public void heal(int amount) {
 
-        hp = Math.min(maxHp, hp + amount)
+        hp = Math.min(maxHp, hp + amount);
     }
 
     public void levelUp() {
 
         level++;
-        hp += HP_INCREASE_PER_LEVEL;
+
+        maxHp += HP_INCREASE_PER_LEVEL;
+
         attack += ATTACK_INCREASE_PER_LEVEL;
 
+        hp = maxHp;
+
         System.out.println(name + " получил новый уровень!");
-    }
-
-    public boolean isAlive() {
-
-        return hp > 0;
     }
 }

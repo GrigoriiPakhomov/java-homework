@@ -1,76 +1,168 @@
 package main.java.pokemonBattle;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class BattleGame {
-    private Scanner scanner = new Scanner(System.in);
-    private Pokemon player = new Pokemon("Пикачу", 100, 15, 1);
-    private Pokemon enemy = new Pokemon("Чармандер", 100, 12, 1);
-    private Skill attack = new Attack();
-    private Skill heal = new Heal(10);
+
+    private final Scanner scanner =
+            new Scanner(System.in);
 
     public void startGame() {
 
-        System.out.println("Битва начинается!");
+        BattleMode mode =
+                chooseMode();
 
-        while (player.isAlive() && enemy.isAlive()) {
+        Team playerTeam =
+                new Team(
+                        selectPokemons(mode)
+                );
 
-            playerTurn();
+        Team enemyTeam =
+                new Team(
+                        randomPokemons(mode)
+                );
 
-            if (!enemy.isAlive()) break;
-
-            enemyTurn();
-        }
-
-        finishGame();
-
-        scanner.close();
-    }
-
-    private void playerTurn() {
-
-        System.out.printf("""
-                        Ваше здоровье: %d
-                        Здоровье противника: %d
-
-                        Выберите действие:
-                        1 — Атака
-                        2 — Лечение
-                        """,
-                player.getHp(),
-                enemy.getHp()
+        printTeams(
+                playerTeam,
+                enemyTeam
         );
 
-        int choice = scanner.nextInt();
+        Player player =
+                new HumanPlayer(
+                        playerTeam,
+                        scanner
+                );
 
-        if (choice==1) {
+        Player computer =
+                new ComputerPlayer(
+                        enemyTeam
+                );
 
-            attack.use(player, enemy);
+        BattleEngine engine =
+                new BattleEngine();
 
-        } else {
-
-            heal.use(player, player);
-        }
+        engine.startBattle(
+                player,
+                computer
+        );
     }
 
-    private void enemyTurn() {
+    private void printTeams(
+            Team player,
+            Team enemy
+    ) {
 
-        System.out.println("\nПротивник атакует!");
+        System.out.println("\nВаша команда:");
 
-        attack.use(enemy, player);
+        player.getAll().forEach(p ->
+                System.out.println(
+                        p.getName()
+                                + " HP:"
+                                + p.getHp()
+                )
+        );
+
+        System.out.println("\nКоманда противника:");
+
+        enemy.getAll().forEach(p ->
+                System.out.println(
+                        p.getName()
+                                + " HP:"
+                                + p.getHp()
+                )
+        );
     }
 
-    private void finishGame() {
+    private BattleMode chooseMode() {
 
-        if (player.isAlive()) {
+        System.out.println("""
+                Выберите режим:
+                1 — 1x1
+                2 — 2x2
+                3 — 4x4
+                """);
 
-            System.out.println("\nВы победили!");
+        int choice =
+                scanner.nextInt();
 
-            player.levelUp();
+        return switch (choice) {
 
-        } else {
+            case 2 -> BattleMode.TWO_VS_TWO;
 
-            System.out.println("\nВы проиграли!");
+            case 3 -> BattleMode.FOUR_VS_FOUR;
+
+            default -> BattleMode.ONE_VS_ONE;
+        };
+    }
+
+    private List<Pokemon> selectPokemons(
+            BattleMode mode
+    ) {
+
+        List<Pokemon> team =
+                new ArrayList<>();
+
+        for (int i = 0;
+             i < mode.getTeamSize();
+             i++) {
+
+            System.out.println("""
+                    Выберите покемона:
+                    1 Pikachu
+                    2 Charmander
+                    3 Squirtle
+                    4 Bulbasaur
+                    """);
+
+            int choice =
+                    scanner.nextInt();
+
+            team.add(
+                    create(choice)
+            );
         }
+
+        return team;
+    }
+
+    private List<Pokemon> randomPokemons(
+            BattleMode mode
+    ) {
+
+        List<Pokemon> team =
+                new ArrayList<>();
+
+        for (int i = 0;
+             i < mode.getTeamSize();
+             i++) {
+
+            int random =
+                    (int)
+                            (Math.random() * 4 + 1);
+
+            team.add(
+                    create(random)
+            );
+        }
+
+        return team;
+    }
+
+    private Pokemon create(
+            int choice
+    ) {
+
+        return switch (choice) {
+
+            case 2 -> PokemonFactory.createCharmander();
+
+            case 3 -> PokemonFactory.createSquirtle();
+
+            case 4 -> PokemonFactory.createBulbasaur();
+
+            default -> PokemonFactory.createPikachu();
+        };
     }
 }

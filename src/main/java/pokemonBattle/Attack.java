@@ -1,18 +1,43 @@
 package main.java.pokemonBattle;
 
+import java.util.List;
+
 public class Attack extends Skill {
 
+    public Attack() {
+
+        super(0);
+    }
+
     @Override
-    public void use(Pokemon user, Pokemon target) {
+    public void use(
+            Pokemon user,
+            List<Pokemon> targets
+    ) {
 
-        int damage = user.getAttack();
+        for (Pokemon target : targets) {
 
-        target.takeDamage(damage);
+            int damage =
+                    (int) (
+                            user.getAttack()
+                                    * user.getType()
+                                    .getEffectiveness(
+                                            target.getType()
+                                    )
+                    );
 
-        System.out.printf("%s атакует %s и наносит %d урона!%n",
-                user.getName(),
-                target.getName(),
-                damage
-        );
+            target.takeDamage(damage);
+
+            System.out.printf(
+                    "%s (%s) атакует %s (%s) и наносит %d урона%n",
+                    user.getName(),
+                    user.getType(),
+                    target.getName(),
+                    target.getType(),
+                    damage
+            );
+        }
+
+        resetCooldown();
     }
 }
