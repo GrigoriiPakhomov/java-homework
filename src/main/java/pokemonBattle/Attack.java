@@ -15,29 +15,19 @@ public class Attack extends Skill {
             List<Pokemon> targets
     ) {
 
-        for (Pokemon target : targets) {
+        Pokemon target = targets.get(0);
 
-            int damage =
-                    (int) (
-                            user.getAttack()
-                                    * user.getType()
-                                    .getEffectiveness(
-                                            target.getType()
-                                    )
-                    );
+        int damage = user.getAttack();
 
-            target.takeDamage(damage);
+        target.takeDamage(damage);
 
-            System.out.printf(
-                    "%s (%s) атакует %s (%s) и наносит %d урона%n",
-                    user.getName(),
-                    user.getType(),
-                    target.getName(),
-                    target.getType(),
-                    damage
-            );
-        }
-
-        resetCooldown();
+        System.out.println(
+                user.getName()
+                        + " атакует "
+                        + target.getName()
+                        + " и наносит "
+                        + damage
+                        + " урона!"
+        );
     }
 }

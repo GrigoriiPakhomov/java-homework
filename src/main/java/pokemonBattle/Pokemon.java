@@ -1,5 +1,8 @@
 package main.java.pokemonBattle;
 
+import lombok.Getter;
+
+@Getter
 public class Pokemon {
 
     private static final int HP_INCREASE_PER_LEVEL = 10;
@@ -13,7 +16,13 @@ public class Pokemon {
     private int level;
     private int maxHp;
 
-    public Pokemon(String name, PokemonType type, int hp, int attack, int level) {
+    public Pokemon(
+            String name,
+            PokemonType type,
+            int hp,
+            int attack,
+            int level
+    ) {
 
         this.name = name;
         this.type = type;
@@ -21,22 +30,6 @@ public class Pokemon {
         this.attack = attack;
         this.level = level;
         this.maxHp = hp;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public PokemonType getType() {
-        return type;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public int getAttack() {
-        return attack;
     }
 
     public boolean isAlive() {

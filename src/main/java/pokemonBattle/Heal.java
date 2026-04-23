@@ -6,9 +6,7 @@ public class Heal extends Skill {
 
     private final int healAmount;
 
-    public Heal(
-            int healAmount
-    ) {
+    public Heal(int healAmount) {
 
         super(1);
 
@@ -21,13 +19,15 @@ public class Heal extends Skill {
             List<Pokemon> targets
     ) {
 
-        user.heal(healAmount);
+        Pokemon target = targets.get(0);
+
+        target.heal(healAmount);
 
         System.out.println(
                 user.getName()
                         + " восстанавливает "
                         + healAmount
-                        + " HP"
+                        + " здоровье!"
         );
 
         resetCooldown();

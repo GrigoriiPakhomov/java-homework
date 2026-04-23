@@ -1,12 +1,17 @@
 package main.java.pokemonBattle;
 
+import lombok.Getter;
+
 import java.util.List;
 
+@Getter
 public class Team {
 
     private final List<Pokemon> pokemons;
 
-    public Team(List<Pokemon> pokemons) {
+    public Team(
+            List<Pokemon> pokemons
+    ) {
 
         this.pokemons = pokemons;
     }
@@ -20,7 +25,8 @@ public class Team {
 
     public boolean isAlive() {
 
-        return pokemons.stream().anyMatch(Pokemon::isAlive);
+        return pokemons.stream()
+                .anyMatch(Pokemon::isAlive);
     }
 
     public List<Pokemon> getAll() {

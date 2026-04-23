@@ -1,22 +1,19 @@
 package main.java.pokemonBattle;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 
+@Getter
+@RequiredArgsConstructor
 public abstract class Player {
 
-    protected Team team;
+    protected final Team team;
 
-    public Player(Team team) {
-
-        this.team = team;
-    }
-
-    public Team getTeam() {
-
-        return team;
-    }
-
-    public abstract Skill chooseSkill(Pokemon pokemon);
+    public abstract Skill chooseSkill(
+            Pokemon pokemon
+    );
 
     public abstract List<Pokemon> chooseTargets(
             Skill skill,

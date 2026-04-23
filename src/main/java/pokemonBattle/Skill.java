@@ -18,17 +18,17 @@ public abstract class Skill {
         return currentCooldown==0;
     }
 
-    public void tickCooldown() {
+    public void resetCooldown() {
+
+        currentCooldown = cooldown;
+    }
+
+    public void reduceCooldown() {
 
         if (currentCooldown > 0) {
 
             currentCooldown--;
         }
-    }
-
-    public void resetCooldown() {
-
-        currentCooldown = cooldown;
     }
 
     public abstract void use(

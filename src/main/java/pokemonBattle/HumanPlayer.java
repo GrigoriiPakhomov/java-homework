@@ -9,7 +9,7 @@ public class HumanPlayer extends Player {
 
     private final Skill attackSkill = new Attack();
     private final Skill healSkill = new Heal(15);
-    private final Skill fireBlastSkill = new FireBlast();
+    private final Skill fireBlast = new FireBlast();
 
     public HumanPlayer(
             Team team,
@@ -37,7 +37,7 @@ public class HumanPlayer extends Player {
         return switch (choice) {
 
             case 2 -> healSkill;
-            case 3 -> fireBlastSkill;
+            case 3 -> fireBlast;
 
             default -> attackSkill;
         };

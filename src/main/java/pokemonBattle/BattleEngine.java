@@ -65,6 +65,8 @@ public class BattleEngine {
                         "Способность на перезарядке!"
                 );
 
+                skill.reduceCooldown();
+
                 continue;
             }
 
@@ -78,7 +80,7 @@ public class BattleEngine {
 
             printHp(targets);
 
-            skill.tickCooldown();
+            skill.reduceCooldown();
         }
     }
 

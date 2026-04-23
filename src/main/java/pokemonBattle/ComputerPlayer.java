@@ -8,7 +8,7 @@ public class ComputerPlayer extends Player {
     private final Random random = new Random();
 
     private final Skill attackSkill = new Attack();
-    private final Skill fireBlastSkill = new FireBlast();
+    private final Skill fireBlast = new FireBlast();
 
     public ComputerPlayer(
             Team team
@@ -30,7 +30,7 @@ public class ComputerPlayer extends Player {
 
         } else {
 
-            skill = fireBlastSkill;
+            skill = fireBlast;
         }
 
         System.out.println(
