@@ -22,13 +22,15 @@ public class FireBlast extends Skill {
 
             target.takeDamage(damage);
 
-            System.out.println(
-                    user.getName()
-                            + " использует FireBlast против "
-                            + target.getName()
-                            + " на "
-                            + damage
-                            + " урона"
+            System.out.println("""
+                    %s использует FireBlast против
+                    %s на
+                    %d урона"""
+                    .formatted(
+                            user.getName(),
+                            target.getName(),
+                            damage
+                    )
             );
         }
 

@@ -21,13 +21,15 @@ public class Attack extends Skill {
 
         target.takeDamage(damage);
 
-        System.out.println(
-                user.getName()
-                        + " атакует "
-                        + target.getName()
-                        + " и наносит "
-                        + damage
-                        + " урона!"
+        System.out.println("""
+                %s атакует
+                %s и наносит
+                %d урона!"""
+                .formatted(
+                        user.getName(),
+                        target.getName(),
+                        damage
+                )
         );
     }
 }

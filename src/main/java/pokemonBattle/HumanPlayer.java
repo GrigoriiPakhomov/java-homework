@@ -70,12 +70,13 @@ public class HumanPlayer extends Player {
              i < enemies.size();
              i++) {
 
-            System.out.println(
-                    (i + 1)
-                            + " "
-                            + enemies.get(i).getName()
-                            + " HP:"
-                            + enemies.get(i).getHp()
+            System.out.println("""
+                    %d %s HP:%d"""
+                    .formatted(
+                            i + 1,
+                            enemies.get(i).getName(),
+                            enemies.get(i).getHp()
+                    )
             );
         }
 

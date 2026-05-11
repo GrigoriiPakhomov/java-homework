@@ -22,12 +22,15 @@ public class AttackSkill extends Skill {
 
             target.takeDamage(damage);
 
-            System.out.println(
-                    user.getName()
-                            + " атакует "
-                            + target.getName()
-                            + " на "
-                            + damage
+            System.out.println("""
+                    %s атакует
+                    %s на
+                    %d"""
+                    .formatted(
+                            user.getName(),
+                            target.getName(),
+                            damage
+                    )
             );
         }
 

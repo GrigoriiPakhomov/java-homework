@@ -23,11 +23,13 @@ public class Heal extends Skill {
 
         target.heal(healAmount);
 
-        System.out.println(
-                user.getName()
-                        + " восстанавливает "
-                        + healAmount
-                        + " здоровье!"
+        System.out.println("""
+                %s восстанавливает
+                %d здоровье!"""
+                .formatted(
+                        user.getName(),
+                        healAmount
+                )
         );
 
         resetCooldown();
