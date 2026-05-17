@@ -14,22 +14,17 @@ public class Attack extends Skill {
             Pokemon user,
             List<Pokemon> targets
     ) {
-
         Pokemon target = targets.get(0);
-
         int damage = user.getAttack();
-
         target.takeDamage(damage);
 
-        System.out.println("""
-                %s атакует
-                %s и наносит
-                %d урона!"""
-                .formatted(
-                        user.getName(),
-                        target.getName(),
-                        damage
-                )
+        System.out.printf("""
+                        %s атакует
+                        %s и наносит
+                        %d урона!""",
+                user.getName(),
+                target.getName(),
+                damage
         );
     }
 }
